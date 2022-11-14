@@ -3,6 +3,7 @@
  */
 
 const express = require("express");
+const actuator = require('express-actuator');
 const cors = require("cors");
 const helmet = require("helmet");
 const { clientOrigins, serverPort } = require("./config/env.dev");
@@ -20,6 +21,7 @@ const apiRouter = express.Router();
  *  App Configuration
  */
 
+app.use(actuator());
 app.use(helmet());
 app.use(cors({ origin: clientOrigins }));
 app.use(express.json());
