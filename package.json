@@ -1,7 +1,7 @@
 {
-  "name": "node-express-js",
-  "version": "1.0.0",
-  "description": "",
+  "name": "auth0-express-js-sample",
+  "version": "1.2.0",
+  "description": "Express API to showcase Auth0 API authorization.",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.js",
