@@ -10,6 +10,7 @@ const { clientOrigins, serverPort } = require("./config/env.dev");
 
 const { messagesRouter } = require("./messages/messages.router");
 const { onfidoRouter } = require("./onfido/onfido.router");
+const { closeDb } = require("./db/postgre");
 
 /**
  * App Variables
@@ -41,6 +42,8 @@ app.use(function (err, req, res, next) {
  * Server Activation
  */
 
-app.listen(serverPort, () =>
-  console.log(`API Server listening on port ${serverPort}`)
-);
+const server = app.listen(serverPort, () => console.log(`API Server listening on port ${serverPort}`));
+
+process.on("SIGTERM", () => {
+  server.close(async () => await closeDb());
+});
