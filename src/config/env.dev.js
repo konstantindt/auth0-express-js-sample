@@ -2,7 +2,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const audience = process.env.AUTH0_AUDIENCE;
+let audience = process.env.AUTH0_AUDIENCE;
 const domain = process.env.AUTH0_DOMAIN;
 const serverPort = process.env.SERVER_PORT;
 const clientOriginUrl = process.env.CLIENT_ORIGIN_URL;
@@ -39,6 +39,8 @@ if (!postgreUrl) {
 }
 
 const clientOrigins = ["http://localhost:4040"];
+
+audience = audience.split(",");
 
 module.exports = {
   audience,
