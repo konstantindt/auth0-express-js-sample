@@ -7,6 +7,7 @@ const domain = process.env.AUTH0_DOMAIN;
 const serverPort = process.env.SERVER_PORT;
 const clientOriginUrl = process.env.CLIENT_ORIGIN_URL;
 const postgreUrl = process.env.POSTGRE_URL;
+const onfidoApiToken = process.env.ONFIDO_API_TOKEN;
 
 if (!audience) {
   throw new Error(
@@ -38,6 +39,12 @@ if (!postgreUrl) {
   );
 }
 
+if (!onfidoApiToken) {
+  throw new Error(
+    ".env is missing the definition of a ONFIDO_API_TOKEN environmental variable",
+  );
+}
+
 const clientOrigins = ["http://localhost:4040"];
 
 module.exports = {
@@ -47,4 +54,5 @@ module.exports = {
   clientOriginUrl,
   clientOrigins,
   postgreUrl,
+  onfidoApiToken,
 };

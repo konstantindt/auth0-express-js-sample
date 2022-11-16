@@ -3,7 +3,7 @@
  */
 
 const express = require("express");
-const { getOne } = require("./onfido.service");
+const { getOne, ensureApplicantId, generateSdkToken } = require("./onfido.service");
 const { checkJwt } = require("../authz/check-jwt");
 
 /**
@@ -21,6 +21,14 @@ const onfidoRouter = express.Router();
 onfidoRouter.get("/one", checkJwt, async (req, res) => {
   const one = await getOne();
   res.status(200).send(one);
+});
+
+// POST onfido/
+
+onfidoRouter.get("/sdk-token", checkJwt, async (req, res) => {
+  const applicantId = await ensureApplicantId();
+  const token = await generateSdkToken(applicantId, req.body["application_id"]);
+  res.status(200).send(token);
 });
 
 module.exports = {
