@@ -47,7 +47,7 @@ onfidoRouter.get("/checks", checkJwt, async (req, res) => {
 onfidoRouter.post("/sdk-token", checkJwt, async (req, res) => {
   const applicantId = await ensureApplicantId(req.user);
   const token = await generateSdkToken(applicantId, req.body["application_id"]);
-  res.status(200).send(token);
+  res.status(200).send({ sdk_token: token });
 });
 
 onfidoRouter.post("/checks", checkJwt, async (req, res) => {
