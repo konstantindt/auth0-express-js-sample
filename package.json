@@ -1,6 +1,6 @@
 {
   "name": "auth0-express-js-sample",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Express API to showcase Auth0 API authorization.",
   "main": "index.js",
   "scripts": {
